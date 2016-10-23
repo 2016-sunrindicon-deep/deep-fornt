@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 
 app.use('/', express.static('public'));
-app.use(bodyParser.urlencoded({extended : false}))
+app.use(bodyParser.urlencoded({extended : false}));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
@@ -26,6 +26,27 @@ app.get('/',function(req,res){
 
       });
 });
+app.get('/profile',function(req,res){
+      res.render('profile.html', {
+        title: "NO.w.HERE",
+        Country: 'korea',
+        Username : db[db.length - 1].id
+      });
+});
+app.get('/settings',function(req,res){
+      res.render('settings.html', {
+        title: "Settings",
+        Country: 'korea',
+        Username : db[db.length - 1].id
+      });
+});
+app.get('/messages',function(req,res){
+      res.render('main.html', {
+        title: "Settings",
+        Country: 'korea',
+        Username : db[db.length - 1].id
+      });
+});
 // app.get('/main',function(req,res){
 //   res.render('main.html', {
 //       title: "NO.W.HERE",
@@ -33,10 +54,26 @@ app.get('/',function(req,res){
 //       Username : "eunsolKang"
 //   });
 // });
-var db = [{}]
+var db = [];
+db = new Array();
 app.post('/main', function(req, res){
-  db[db.length - 1].id = req.body.id_input;
-  db[db.length - 1].pw = req.body.pw_input;
+  if(db != ""){
+    for(var i=0; i<db.length; i++)
+    {
+      if(req.body.id_input == db[i].id)
+      {
+        res.render('login.html', {
+
+        });
+      }
+    }
+  }
+  db.push({
+    id : req.body.id_input,
+    pw : pw = req.body.pw_input
+  });
+  // db[db.length - 1].id = req.body.id_input;
+  // db[db.length - 1].pw = req.body.pw_input;
   res.render('main.html', {
         title: "NO.w.HERE",
         Country: 'korea',
@@ -48,10 +85,9 @@ app.post('/login', function(req, res){
   var id = req.body.id_input;
   var checked = false;
   for(var i=0; i<db.length; i++){
-    console.log('welcome')
     if(id == db[i].id)
     {
-      console.log('welcome!!!!!!')
+      console.log('login success')
       res.render('main.html', {
             title: "NO.w.HERE",
             Country: 'korea',
@@ -64,7 +100,8 @@ app.post('/login', function(req, res){
   {
     return 0;
   }
-})
+});
+
 var userList = [];
 
 
@@ -78,7 +115,9 @@ io.on('connection', function(socket){
       return false;
     }
 
+    nickname = data;
     userList.push(nickname);
+    console.log(userList);
     socket.broadcast.emit('join', {
       nickname : nickname
       ,userList : userList
@@ -95,14 +134,13 @@ io.on('connection', function(socket){
 
   // 메시지 전달
   socket.on('msg', function(data){
-      console.log(data.nickname+':'+ data.msg);
-      io.emit('msg', {
-        nickname : data.nickname
-        ,msg : data.msg
-      });
-
+    console.log('msg: ' + data.msg + ' to ' + data.opp);
+    io.emit('msg', {
+      nickname : data.nickname
+      ,msg : data.msg
+      ,opp : data.opp
+    });
   });
-
 
   // 접속 종료
   socket.on('disconnect', function () {
@@ -122,51 +160,3 @@ io.on('connection', function(socket){
     });
   });
 });
-
-
-// var bodyParser = require('body-parser')
-// var session = require('express-session')
-// var passport = require('passport')
-// var LocalStrategy = require('passport-local').Strategy
-//
-// app.use(bodyParser.urlencoded({ extended : false }))
-// app.set('view engine', 'jade');
-// app.set('views', './views');
-// // app.use(session({
-// //   secret : "alsjdflasjdf@jlfjaSf9as9df"
-// //   resave : false
-// //   saveUninitalized : true
-// // }))
-// // app.use(passport.initalize())
-// // app.use(passport.session())
-//
-// // passport.use(new LocalStrategy({
-// //   usernameField : 'id',
-// //   passwordField : 'pw'
-// // },function(id, pw, done) {
-// //
-// // }))
-// app.locals.pretty = true;
-// app.use(express.static('public'));
-// app.get('/template', function(req, res){
-//   res.render('index', {time:Date(), title:'Jade'});
-// })
-// app.get('/', function(req, res){
-//     res.filesend()
-// });
-//
-// app.get('/route', function(req, res){
-//     res.send('Hello Router, <img src="/route.png">')
-// });
-// app.get('/topic', function(req, res){
-//   res.send(req.params.id);
-// });
-// app.post('/login', function(req, res){
-//     var title = req.body.title;
-//     var dis = req.body.dis;
-//
-//     res.send(title + ',' + dis)
-// });
-// app.listen(3000, function(){
-//     console.log('Conneted 3000 port!');
-// });

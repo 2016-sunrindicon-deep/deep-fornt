@@ -165,7 +165,7 @@ input {
 }
 
 .login-field:focus {
-border: 2px solid #3498DB;
+border: 2px solid rgb(102, 168, 207);;
 box-shadow: none;
 }
 .login-field-icon{
@@ -175,7 +175,7 @@ box-shadow: none;
 
 .btn {
   border: 2px solid transparent;
-  background: rgb(77, 200, 219);
+  background: rgb(102, 168, 207);;
   color: #ffffff;
   font-size: 16px;
   line-height: 25px;

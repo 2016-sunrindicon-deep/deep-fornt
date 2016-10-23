@@ -10,6 +10,9 @@
     <script src="/js/main.js" charset="utf-8"></script>
 
     <link rel="stylesheet" href="/css/main.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/css/header.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/css/sider.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/css/media.css" media="screen" title="no title">
   </head>
   <body>
     <div class="container">
@@ -54,8 +57,7 @@
             </div>
             <div class="profile_index">
               <div class="profile_name">
-                <%= Username %>
-                <% nickname = Username%>
+                <%=Username%>
               </div>
               <div class="profile_country">
                 <%= Country %>
@@ -67,10 +69,10 @@
 
             <div class="nav_app">
               <ul>
-                <li class="nav__list"><img src="/img/icon/home.png"><div class="nav__index">Home</div></li>
-                <li class="nav__list"><img src="/img/icon/profile.png"><div class="nav__index">Profile</div></li>
-                <li class="nav__list"><img src="/img/icon/chat.png"><div class="nav__index">Messages</div></li>
-                <li class="nav__list"><img src="/img/icon/setting.png"><div class="nav__index">Settings</div></li>
+                <li class="nav__list nav_home"><img src="/img/icon/home.png"><div class="nav__index">Home</div></li>
+                <li class="nav__list nav_profile"><img src="/img/icon/profile.png"><div class="nav__index">Profile</div></li>
+                <li class="nav__list nav_messages"><img src="/img/icon/chat.png"><div class="nav__index">Messages</div></li>
+                <li class="nav__list nav_settings"><img src="/img/icon/setting.png"><div class="nav__index">Settings</div></li>
               </ul>
             </div>
             <div class="nav_users">
@@ -87,27 +89,7 @@
 
         <!-- 메인 -->
         <div class="chatting">
-          <div class="asideBar">
-            <div class="search">
-              <img src="/img/icon/searchGray.png" alt="" />
-              <input type="text" name="name" value="" placeholder="Search users">
-            </div>
-            <ul class="usersList">
-              <li class="usersBox">
-                <div class="usersProfile">
-                  <img src="" alt="" />
-                </div>
-                <div class="usersIndex">
-                  <div class="usersName">
-                    Parktaejoon
-                  </div>
-                  <div class="usersCountry">
-                    KOREA
-                  </div>
-               </div>
-              </li>
-            </ul>
-          </div>
+
           <div class="chatView">
             <div class="chatHeader">
               <!-- <div class="backButton">
@@ -117,24 +99,16 @@
                 <img src="/img/icon/menu2.png" alt="menu" class="openSideBar_img"/>
               </div> -->
               <div class="partnerView">
-                Youngchae Yoon
+                No opponent
               </div>
               <!-- <div class="viewProfile">
                 <input type="button" name="viewProfile" class="viewProfile_btn" value="View Profile"></input>
               </div> -->
 
             </div>
-            <div class="chatIndex">
+            <div class="chatIndexBOX">
+              <div class="chatIndex">
 
-              <div class="chatMessage you">
-                <div class="chatValue">
-                  Hello world!
-                </div>
-              </div>
-              <div class="chatMessage me">
-                <div class="chatValue">
-                  Hello world!
-                </div>
               </div>
             </div>
             <form class="chatFooter">
@@ -145,10 +119,18 @@
                 <button type="button" name="name">Send</button>
               </div>
             </form>
-
           </div>
 
           <!-- 오른쪽 유저리스트 사이드바 -->
+          <div class="asideBar">
+            <div class="search">
+              <img src="/img/icon/searchGray.png" alt="" />
+              <input type="text" name="name" value="" placeholder="Search users">
+            </div>
+            <ul class="usersList">
+
+            </ul>
+          </div>
 
         </div>
       </div>
