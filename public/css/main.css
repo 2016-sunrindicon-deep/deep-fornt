@@ -158,29 +158,63 @@ body, html{
   height: 500px;
   list-style: none;
 }
-.usersProfile{
-  border-radius: 100%;
-  width:50px;
-  height: 50px;
-  background-color: black;
-  margin-left: 5px;
-}
 .usersBox{
   display: flex;
   align-items: center;
   border-bottom: 1px solid lightgray;
   padding: 15px 10px;
 }
+.usersProfile{
+  border-radius: 100%;
+  flex-basis: 50px;
+  height: 50px;
+  flex-shrink: 1;
+  background-color: black;
+  margin-left: 5px;
+}
+
 .usersBox:hover{
   background-color: rgb(247, 247, 247);
 }
 .usersIndex{
-  margin-left: 13px;
+  flex:1;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 10px;
 }
 .usersName{
-  font-size:12pt;
 }
 .usersCountry{
-  font-size: 8pt;
   color:gray;
+  font-size: 8pt;
+}
+.usersOther{
+  flex-basis: 50px;
+  height: 50px;
+  flex-shrink: 1;
+}
+.usersTime
+{
+  font-size: 9pt;
+  color:gray;
+}
+.usersAlarm{
+  display: flex;
+  align-items: center;
+  float: right;
+  margin-top: 8px;
+}
+.usersAlarmBOX{
+  align-items: center;
+  border-radius: 13px;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  color:white;
+  font-size: 10pt;
+  text-align: center;
+  background-color: rgb(237, 49, 36);
 }

@@ -151,6 +151,7 @@ io.on('connection', function(socket){
       nickname : data.nickname
       ,msg : data.msg
       ,opp : data.opp
+      ,userList : userList
     });
   });
 
@@ -164,11 +165,13 @@ io.on('connection', function(socket){
 
     // 접속자목록에서 제거
     var i = userList.indexOf(nickname);
+    var tmpUserList = userList;
     userList.splice(i,1);
 
     socket.broadcast.emit('left', {
       nickname : nickname
       ,userList : userList
+      ,tmpUserList : tmpUserList
     });
   });
 });

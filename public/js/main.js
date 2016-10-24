@@ -13,6 +13,8 @@ var bodyChecked = false;
 var opponent = ""
 var nickname;
 var chatIndexCount;
+var count = 0;
+var userCount = [];
 
 $(window).load(function(){
   nickname = $('.profile_name').text().trim();
@@ -45,6 +47,16 @@ $(window).load(function(){
       t += "<div class='chatValue'>"+data.msg+"</div>"
       t += "</div>"
       $('.chatIndex_'+data.nickname).append(t)
+      if(opponent != data.nickname)
+      {
+        var j = data.userList.indexOf(data.nickname);
+        if(userCount[j] == undefined)
+        {
+          userCount[j] = 0;
+        }
+        userCount[j] += 1;
+        fnUpdateUserList(data.userList)
+      }
     }
     $(".chatIndex").scrollTop($(".chatIndex")[0].scrollHeight);
   });
@@ -83,6 +95,8 @@ $(window).load(function(){
     t += "</div>"
     $('.chatIndexStatic').append(t)
     $('chatIndex_'+data.nickname).remove();
+    var j = data.tmpUserList.indexOf(nickname);
+    userCount.splice(j,1);
     $(".chatIndex").scrollTop($(".chatIndex")[0].scrollHeight);
     // 유저리스트 업데이트
     fnUpdateUserList(data.userList);
@@ -116,11 +130,12 @@ $(window).load(function(){
       $('.partnerView').text(opponent);
       chatIndex_num = ".chatIndex_"+opponent+"";
       chatIndexCount = $('.chatIndex').length;
+      $(this).find('.usersAlarmBOX').hide();
       console.log(chatIndexCount);
       for(var i=0; i<chatIndexCount; i++){
-
         if($('.chatIndex').eq(i).css('display') != 'none')
         {
+          count = 0;
           $('.chatIndex').eq(i).hide()
         }
       }
@@ -169,9 +184,27 @@ function fnUpdateUserList(userList)
       li += '       <div class="usersName">'+userList[i]+'</div>'
       li += '       <div class="usersCountry">KOREA</div>'
       li += '     </div>'
+      li += '    <div class="usersOther">'
+      li += '      <div class="usersTime">'
+      li += '         오후 5:41'
+      li += '      </div>'
+      li += '      <div class="usersAlarm">'
+      li += '        <div class="usersAlarmBOX">'
+      li += '          '+userCount[i]+''
+      li += '        </div>'
+      li += '      </div>'
+      li += '    </div>'
       li += '   </li>'
       $('.usersList').append(li)
       $('.chatIndex_'+userList[i]).hide();
+      if (userCount[i] == undefined)
+      {
+        // console.log($('usersIndex').eq(i).html());
+        $('.usersBox').eq(i - 1).find('.usersAlarmBOX').hide();
+      }
+      else{
+        $('.usersBox').eq(i - 1).find('.usersAlarmBOX').show();
+      }
     }
   }
   if (opponent != "")
