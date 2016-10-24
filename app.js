@@ -11,7 +11,19 @@ app.use(bodyParser.urlencoded({extended : false}));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
-
+app.use(function (req, res, next) {
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    // Pass to next layer of middleware
+    next();
+});
 
 // app.get('/', function(req, res){
 //   res.sendfile(__dirname + '/main.html');
@@ -77,7 +89,7 @@ app.post('/main', function(req, res){
   res.render('main.html', {
         title: "NO.w.HERE",
         Country: 'korea',
-        Username : db[db.length - 1].id
+        Username : db[db.length - 1].id,
     });
 });
 app.post('/login', function(req, res){
@@ -134,7 +146,7 @@ io.on('connection', function(socket){
 
   // 메시지 전달
   socket.on('msg', function(data){
-    console.log('msg: ' + data.msg + ' to ' + data.opp);
+    console.log(' '+data.nickname + ' >> ' + data.opp + ' [ msg: '+data.msg+' ] ');
     io.emit('msg', {
       nickname : data.nickname
       ,msg : data.msg

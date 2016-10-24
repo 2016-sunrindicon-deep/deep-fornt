@@ -10,7 +10,7 @@
 var socket = io();
 var checked = false;
 var bodyChecked = false;
-var opponent
+var opponent = ""
 var nickname;
 var chatIndexCount;
 
@@ -38,17 +38,14 @@ $(window).load(function(){
       t += "<div class='chatMessage me'>"
       t += "<div class='chatValue'>"+data.msg+"</div>"
       t += "</div>"
+      $('.chatIndex_'+opponent).append(t)
     }
-    else if (data.opp == nickname && opponent == data.nickname){
+    else if (data.opp == nickname){
       t += "<div class='chatMessage you'>"
       t += "<div class='chatValue'>"+data.msg+"</div>"
       t += "</div>"
+      $('.chatIndex_'+data.nickname).append(t)
     }
-    if(opponent != "")
-    {
-      $('.chatIndex_'+opponent).append(t)
-    }
-
     $(".chatIndex").scrollTop($(".chatIndex")[0].scrollHeight);
   });
 
@@ -58,7 +55,8 @@ $(window).load(function(){
     t += "<div class='chatMessage you'>"
     t += "  <div class='chatValue'>"+data.nickname+"님이 입장하셨습니다</div>"
     t += "</div>"
-    $('.chatIndex').append(t)
+    $('.chatIndexStatic').append(t)
+    $('.chatIndexBOX').append('<div class="chatIndex chatIndex_'+data.nickname+'"></div>');
     $(".chatIndex").scrollTop($(".chatIndex")[0].scrollHeight);
     // 유저리스트 업데이트
     fnUpdateUserList(data.userList);
@@ -66,13 +64,15 @@ $(window).load(function(){
   socket.on('welcome', function(data){
     // 유저리스트 업데이트
     console.log(data.userList);
+    initUpdateUserList(data.userList);
     fnUpdateUserList(data.userList);
+
 
     var t = " "
     t += "<div class='chatMessage you'>"
     t += "  <div class='chatValue'>"+nickname+"님 환영합니다</div>"
     t += "</div>"
-    $('.chatIndex').append(t)
+    $('.chatIndexStatic').append(t)
     $(".chatIndex").scrollTop($(".chatIndex")[0].scrollHeight);
   });
   socket.on('left', function(data){
@@ -81,7 +81,8 @@ $(window).load(function(){
     t += "<div class='chatMessage you'>"
     t += "  <div class='chatValue'>"+data.nickname+"님이 퇴장하셨습니다</div>"
     t += "</div>"
-    $('.chatIndex').append(t)
+    $('.chatIndexStatic').append(t)
+    $('chatIndex_'+data.nickname).remove();
     $(".chatIndex").scrollTop($(".chatIndex")[0].scrollHeight);
     // 유저리스트 업데이트
     fnUpdateUserList(data.userList);
@@ -113,30 +114,17 @@ $(window).load(function(){
     if (opponent != nickname)
     {
       $('.partnerView').text(opponent);
-      if ( $(".chatIndex_"+opponent).length > 0 )
-      {
-        chatIndex_num = ".chatIndex_"+opponent+"";
-        chatIndexCount = $('.chatIndex').length;
-        for(var i=0; i<chatIndexCount; i++){
-          if($('.chatIndex').eq(i).css('display') != 'none')
-          {
-            $('.chatIndex').eq(i).css('display')
-          }
-        }
-      }
-      else{
-        $('.chatIndexBOX').append('<div class="chatIndex chatIndex_'+opponent+'"></div>');
-        chatIndex_num = ".chatIndex_"+opponent+"";
-        chatIndexCount = $('.chatIndex').length;
-        for(var i=0; i<chatIndexCount; i++){
-          if($('.chatIndex').eq(i).css('display') != 'none')
-          {
-            $('.chatIndex').eq(i).hide()
-          }
-        }
-        $(chatIndex_num).show();
+      chatIndex_num = ".chatIndex_"+opponent+"";
+      chatIndexCount = $('.chatIndex').length;
+      console.log(chatIndexCount);
+      for(var i=0; i<chatIndexCount; i++){
 
+        if($('.chatIndex').eq(i).css('display') != 'none')
+        {
+          $('.chatIndex').eq(i).hide()
+        }
       }
+      $(chatIndex_num).show();
     }
 
   });
@@ -183,6 +171,21 @@ function fnUpdateUserList(userList)
       li += '     </div>'
       li += '   </li>'
       $('.usersList').append(li)
+      $('.chatIndex_'+userList[i]).hide();
+    }
+  }
+  if (opponent != "")
+  {
+    $('chatIndex_'+opponent).show();
+  }
+}
+
+function initUpdateUserList(userList){
+  for (var i = 0; i<userList.length; i++)
+  {
+    if(userList[i] != nickname)
+    {
+      $('.chatIndexBOX').append('<div class="chatIndex chatIndex_'+userList[i]+'"></div>');
     }
   }
 }
