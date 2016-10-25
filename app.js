@@ -162,7 +162,6 @@ io.on('connection', function(socket){
       console.log('--- not joinedUser left');
       return false;
     }
-
     // 접속자목록에서 제거
     var i = userList.indexOf(nickname);
     var tmpUserList = userList;
