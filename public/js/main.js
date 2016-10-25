@@ -50,11 +50,9 @@ $(window).load(function(){
       if(opponent != data.nickname)
       {
         var j = data.userList.indexOf(data.nickname);
-        if(userCount[j] == undefined)
-        {
-          userCount[j] = 0;
-        }
-        userCount[j] += 1;
+        userCount[j].count += 1;
+
+        console.log(userCount[j]);
         fnUpdateUserList(data.userList)
       }
     }
@@ -95,8 +93,9 @@ $(window).load(function(){
     t += "</div>"
     $('.chatIndexStatic').append(t)
     $('chatIndex_'+data.nickname).remove();
-    var j = data.tmpUserList.indexOf(nickname);
+    var j = data.tmpUserList.indexOf(data.nickname);
     userCount.splice(j,1);
+    console.log('left user!')
     $(".chatIndex").scrollTop($(".chatIndex")[0].scrollHeight);
     // 유저리스트 업데이트
     fnUpdateUserList(data.userList);
@@ -173,44 +172,55 @@ function fnUpdateUserList(userList)
   console.log(userList)
   for (var i = 0; i<userList.length; i++)
   {
-    if(userList[i] != nickname)
+    if(userList[i].count == undefined)
     {
-      var li = " "
-      li += '<li class="usersBox">'
-      li += '     <div class="usersProfile">'
-      li += '       <img src="" alt="" />'
-      li += '     </div>'
-      li += '     <div class="usersIndex">'
-      li += '       <div class="usersName">'+userList[i]+'</div>'
-      li += '       <div class="usersCountry">KOREA</div>'
-      li += '     </div>'
-      li += '    <div class="usersOther">'
-      li += '      <div class="usersTime">'
-      li += '         오후 5:41'
-      li += '      </div>'
-      li += '      <div class="usersAlarm">'
-      li += '        <div class="usersAlarmBOX">'
-      li += '          '+userCount[i]+''
-      li += '        </div>'
-      li += '      </div>'
-      li += '    </div>'
-      li += '   </li>'
-      $('.usersList').append(li)
-      $('.chatIndex_'+userList[i]).hide();
-      if (userCount[i] == undefined)
-      {
-        // console.log($('usersIndex').eq(i).html());
-        $('.usersBox').eq(i - 1).find('.usersAlarmBOX').hide();
-      }
-      else{
-        $('.usersBox').eq(i - 1).find('.usersAlarmBOX').show();
-      }
+      userCount.push({name : userList[i], count : 0});
+    }
+    var li = " "
+    li += '<li class="usersBox">'
+    li += '     <div class="usersProfile">'
+    li += '       <img src="" alt="" />'
+    li += '     </div>'
+    li += '     <div class="usersIndex">'
+    li += '       <div class="usersName">'+userList[i]+'</div>'
+    li += '       <div class="usersCountry">KOREA</div>'
+    li += '     </div>'
+    li += '    <div class="usersOther">'
+    li += '      <div class="usersTime">'
+    li += '         오후 5:41'
+    li += '      </div>'
+    li += '      <div class="usersAlarm">'
+    li += '        <div class="usersAlarmBOX">'
+    li += '          '+userCount[i].count+''
+    li += '        </div>'
+    li += '      </div>'
+    li += '    </div>'
+    li += '   </li>'
+
+    $('.usersList').append(li)
+    $('.chatIndex_'+userList[i]).hide();
+    if(userList[i] == nickname)
+    {
+      $('.usersBox').eq(i).hide();
     }
   }
+
   if (opponent != "")
   {
     $('chatIndex_'+opponent).show();
   }
+
+  for(var i=0; i<userList.length; i++)
+  {
+    if (userCount[i].count == 0)
+    {
+      $('.usersBox').eq(i).find('.usersAlarmBOX').hide();
+    }
+    else{
+      $('.usersBox').eq(i).find('.usersAlarmBOX').show();
+    }
+  }
+
 }
 
 function initUpdateUserList(userList){
@@ -219,6 +229,8 @@ function initUpdateUserList(userList){
     if(userList[i] != nickname)
     {
       $('.chatIndexBOX').append('<div class="chatIndex chatIndex_'+userList[i]+'"></div>');
+      userCount.push({name : userList[i], count : 0});
+      $('.usersBox').eq(i).find('.usersAlarmBOX').hide();
     }
   }
 }
