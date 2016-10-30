@@ -1,45 +1,113 @@
-var checked = false;
-var bodyChecked = false;
-
+var open;
+var bodyChecked;
 $(window).load(function(){
+  open = true;
+  bodyChecked = false;
   reset();
-  $('.nav_profile').click(function(){
-    window.location.href = '/profile'
+  $(document).on('click', '.nav_app a', function(event){
+      console.log(event.target.id);
+
+      if(event.target.id == "home")
+      {
+        var className =  $('body').attr('class')
+        $('body').removeClass(className)
+        $('body').toggleClass('homePage')
+
+      }
+      else if (event.target.id == "profile")
+      {
+        var className =  $('body').attr('class')
+        $('body').removeClass(className)
+        $('body').toggleClass('profilePage')
+      }
+      else if (event.target.id == "message")
+      {
+        var className =  $('body').attr('class')
+        $('body').removeClass(className)
+        $('body').toggleClass('messagesPage')
+      }
+      else if (event.target.id == "setting")
+      {
+        var className =  $('body').attr('class')
+        $('body').removeClass(className)
+        $('body').toggleClass('settingsPage')
+      }
+      history.pushState(null, null, event.target.href);
+      $('article').load(event.target.href+' article>.main');
+      event.preventDefault();
   });
-  $('.nav_settings').click(function(){
-    window.location.href = '/settings'
+  $(window).on('popstate', function(event){
+    console.log(location);
+    var className =  $('body').attr('class')
+    var addClass = location.pathname;
+    addClass = addClass.replace('/', '');
+    $('body').removeClass(className);
+    $('body').toggleClass(addClass + 'Page')
+    $('article').load(location.href+' article>.main');
+
   });
-  $('.nav_messages').click(function(){
-    window.location.href = '/messages'
-  });
+  $(document).on('click','.box',function(){
+    if($(this).children('img').css('display') == 'none'){
+      $(this).children('img').show();
+    }
+    else{
+      $(this).children('img').hide();
+    }
+  })
   $('.openSideBar_img').click(function(){
-    $(this).attr('src', '/img/icon/menu2.png');
-    $('.content').toggleClass('open')
-    $('.sideBar').css('left', 0);
-    checked = true;
-    bodyChecked = false;
+    if($('.header').css('display') == 'none')
+    {
+      $(this).attr('src', '/img/icon/menu_M.png');
+    }
+    else{
+      $(this).attr('src', '/img/icon/menu2.png');
+    }
+    console.log(open);
+    if(open == true)
+    {
+      $('.content').removeClass('open');
+      $('.content').toggleClass('close');
+      open = false;
+    }
+    else if(open == false){
+      $('.content').toggleClass('open');
+      $('.content').removeClass('close');
+      open = true;
+      bodyChecked = false;
+    }
   });
   $('body').click(function(e){
-    if(checked && bodyChecked){
+    var tmp = $('.sideBar').css('position')
+    if(open && bodyChecked &&  tmp =='absolute'){
       if(!$('.sideBar').has(e.target).length){
-        $('.sideBar').css('left', -203);
-        checked = false;
+        $('.content').removeClass('open');
+        $('.content').toggleClass('close');
+        open = false;
       }
     }
     bodyChecked = true;
   });
+
 });
+
+
 
 $(window).resize(function() {
    reset();
 });
 
 function reset(){
-  $('.dropDownProfile li').hide();
-  $('.sideBar').css('height',window.innerHeight - 80);
+  $('.sideBar').css('height',window.innerHeight - 70);
   $('.sidebar_cover').css('height', window.innerHeight)
   $('.container').css('height', window.innerHeight);
   $('.friendList').css('height', window.innerHeight - 140)
   $('.setBox_1').css('height', window.innerHeight - 75);
   $('.setBox_2').css('height', window.innerHeight - 75);
+  if($('.header').css('display') == 'none'){
+    $('.article').css('height', window.innerHeight);
+  }
+  else{
+    $('.article').css('height', window.innerHeight - 70);
+  }
+
 }

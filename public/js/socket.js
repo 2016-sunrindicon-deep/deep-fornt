@@ -3,12 +3,13 @@ var opponent = ""
 var nickname;
 var chatIndexCount;
 var userCount = [];
-
+document.getElementById('id')
 $(window).load(function(){
+  console.log('socket online!');
   nickname = $('.profile_name').text().trim();
   socket.emit('join', nickname)
   $('form').submit(function(){
-    if($('#m').val().trim() != "" && opponent != "")
+    if($('#m').val().trim() != "" && opponent)
     {
       socket.emit('msg', {
         msg : $('#m').val(),

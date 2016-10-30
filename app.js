@@ -68,7 +68,7 @@ app.get('/messages',function(req,res){
 // });
 var db = [];
 db = new Array();
-app.post('/main', function(req, res){
+app.post('/messages', function(req, res){
   if(db != ""){
     for(var i=0; i<db.length; i++)
     {
@@ -146,6 +146,7 @@ io.on('connection', function(socket){
 
   // 메시지 전달
   socket.on('msg', function(data){
+
     console.log(' '+data.nickname + ' >> ' + data.opp + ' [ msg: '+data.msg+' ] ');
     io.emit('msg', {
       nickname : data.nickname
