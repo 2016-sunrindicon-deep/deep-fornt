@@ -63,7 +63,8 @@
 .box{
   float: left;
   margin: 10px;
-  background-color: rgb(216, 109, 84);
+  /*background-color: rgb(216, 109, 84);*/
+
 }
 .box{
   -webkit-transform: scale(1.00);

@@ -12,7 +12,6 @@ $(window).load(function(){
         var className =  $('body').attr('class')
         $('body').removeClass(className)
         $('body').toggleClass('homePage')
-
       }
       else if (event.target.id == "profile")
       {
@@ -42,7 +41,7 @@ $(window).load(function(){
     var addClass = location.pathname;
     addClass = addClass.replace('/', '');
     $('body').removeClass(className);
-    $('body').toggleClass(addClass + 'Page')
+    $('body').toggleClass(addClass + 'Page');
     $('article').load(location.href+' article>.main');
 
   });
@@ -53,7 +52,7 @@ $(window).load(function(){
     else{
       $(this).children('img').hide();
     }
-  })
+  });
   $('.openSideBar_img').click(function(){
     if($('.header').css('display') == 'none')
     {
@@ -108,6 +107,7 @@ function reset(){
   }
   else{
     $('.article').css('height', window.innerHeight - 70);
+    // $('.main')css('height', window.innerHeight - 70;)
   }
 
 }

@@ -38,6 +38,13 @@ app.get('/',function(req,res){
 
       });
 });
+app.get('/home',function(req,res){
+      res.render('home.html', {
+        title: "NO.w.HERE",
+        Country: 'korea',
+        Username : "dkdk"
+      });
+});
 app.get('/profile',function(req,res){
       res.render('profile.html', {
         title: "NO.w.HERE",
