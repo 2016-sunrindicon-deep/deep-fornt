@@ -45,5 +45,7 @@
   display: flex;
   align-items: center;
   margin-right: 15px;
-
+}
+.topSearch p {
+  color:white;
 }

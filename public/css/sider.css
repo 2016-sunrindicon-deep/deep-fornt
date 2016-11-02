@@ -71,6 +71,10 @@
   align-items: center;
   padding: 8px;
   margin: 7px 0px;
+  font-family: 'Exo', sans-serif;
+}
+.nav__index{
+  font-family: 'Exo', sans-serif;
 }
 .nav__list:hover{
   background-color: rgba(255, 255, 255, 0.5);

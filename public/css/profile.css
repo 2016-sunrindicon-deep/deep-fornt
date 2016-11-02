@@ -91,10 +91,10 @@ body, html{
   -webkit-transition: all 0.4s;
 }
 .box:hover {
-  -webkit-transform: scale(1.05);
-  -moz-transform: scale(1.05);
-  -o-transform: scale(1.05);
-  transform: scale(1.05);
+  -webkit-transform: scale(0.95);
+  -moz-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  transform: scale(0.95);
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
 }
@@ -121,40 +121,44 @@ body, html{
 }
 .box > img{
   display : none;
-  opacity: 0.7;
+  opacity: 1;
   width:80px;
   height: 80px;
-  padding: 50px 0px 0px 57px;
+  padding: 0px 0px 0px 57px;
+}
+.box p {
+  color:white;
+  margin-left: 10px;
 }
 #music{
-  background-image: url('/img/hobby/music.jpeg');
+  background-image: url('/img/hobby/music.jpg');
   background-size: cover;
 }
 #sport{
-  background-image: url('/img/hobby/sport.jpeg');
+  background-image: url('/img/hobby/sport.jpg');
   background-size: cover;
 }
 #game{
-  background-image: url('/img/hobby/game.jpeg');
+  background-image: url('/img/hobby/game.jpg');
   background-size: cover;
 }
 #party{
-  background-image: url('/img/hobby/party.jpeg');
+  background-image: url('/img/hobby/party.jpg');
   background-size: cover;
 }
 #study{
-  background-image: url('/img/hobby/study.jpeg');
+  background-image: url('/img/hobby/study.jpg');
   background-size: cover;
 }
 #art{
-  background-image: url('/img/hobby/art.jpeg');
+  background-image: url('/img/hobby/art.jpg');
   background-size: cover;
 }
 #movie{
-  background-image: url('/img/hobby/movie.jpeg');
+  background-image: url('/img/hobby/movie.jpg');
   background-size: cover;
 }
 #fashion{
-  background-image: url('/img/hobby/fashion.jpeg');
+  background-image: url('/img/hobby/fashion.jpg');
   background-size: cover;
 }
