@@ -7,7 +7,8 @@
     <!-- <meta name="viewport" content="width=width-divice initail-scale=1.0"> -->
     <script src="/socket.io/socket.io.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//googleknowledge.github.io/qlabel/src/jquery.qlabel.js"></script>
     <script src="/js/socket.js" charset="utf-8"></script>
 
     <link rel="stylesheet" href="/css/main.css" media="screen" title="no title">
@@ -73,10 +74,10 @@
           <div class="nav">
             <div class="nav_app">
               <ul>
-                <li class="nav__list nav_home"><a href="/home" id="home"><img src="/img/icon/home.png"><div class="nav__index">Home</div></a></li>
-                <li class="nav__list nav_profile"><a href="/profile" id="profile"><img src="/img/icon/profile.png"><div class="nav__index">Profile</div></a></li>
-                <li class="nav__list nav_messages"><a href="/messages" id="message"><img src="/img/icon/chat.png"><div class="nav__index">Messages</div></a></li>
-                <li class="nav__list nav_settings"><a href="/settings" id="setting"><img src="/img/icon/setting.png"><div class="nav__index">Settings</div></a></li>
+                <li class="nav__list nav_home"><a href="/home" id="home"><img src="/img/icon/home.png">Home</a></li>
+                <li class="nav__list nav_profile"><a href="/profile" id="profile"><img src="/img/icon/profile.png">Profile</a></li>
+                <li class="nav__list nav_messages"><a href="/messages" id="message"><img src="/img/icon/chat.png">Messages</a></li>
+                <li class="nav__list nav_settings"><a href="/settings" id="setting"><img src="/img/icon/setting.png">Settings</a></li>
               </ul>
             </div>
             <div class="nav_users">
@@ -84,9 +85,9 @@
             </div>
           </div>
           <footer class="footer">
-            <span><a href="#">Help</a></span>
-            <span><a href="#">About</a></span>
-            <span><a href="#">Developer</a></span>
+            <span><a href="#" class="helpText">Help</a></span>
+            <span><a href="#" class="aboutText">About</a></span>
+            <span><a href="#" class="devText">Developer</a></span>
           </footer>
         </div>
         <!-- 상단 헤드 -->

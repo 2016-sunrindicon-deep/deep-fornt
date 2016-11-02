@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <title>Settings</title>
 
-    <link rel="stylesheet" href="../Dcon/public/css/main.css" media="screen" title="no title">
-    <link rel="stylesheet" href="../Dcon/public/css/header.css" media="screen" title="no title">
-    <link rel="stylesheet" href="../Dcon/public/css/media.css" media="screen" title="no title">
-    <link rel="stylesheet" href="settings.css" media="screen" title="no title">
-    <link rel="stylesheet" href="../Dcon/public/css/sider.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/css/main.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/css/header.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/css/media.css" media="screen" title="no title">
+    <link rel="stylesheet" href="css/settings.css" media="screen" title="no title">
+    <link rel="stylesheet" href="css/sider.css" media="screen" title="no title">
 
     <!-- <script src="/socket.io/socket.io.js"></script> -->
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script src="../Dcon/public/js/main.js" charset="utf-8"></script>
+    <script src="/js/main.js" charset="utf-8"></script>
   </head>
   <body class="settingsPage">
     <div class="container">
@@ -77,27 +77,27 @@
             <div class="setBox_1">
               <div class="setProfile">
                 <div class="basic">
-                  기본설정
+
                 </div>
                 <div class="setProfileName">
-                  <label for="setFirstName">Name</label>
+                  <label for="setFirstName" class="nameView"></label>
                   <input type="text" name="setFirstName" value="" placeholder="firstName" class="setInput">
                   <input type="text" name="setLastName" value="" placeholder="lastName" class="setInput">
                 </div>
                 <div class="profileMail">
-                  <label for="setFirstName">Mail</label>
+                  <label for="setFirstName" class="mailView"></label>
                   <input type="text" name="setMail" class="setEmail setInput" value="" placeholder="JohnSoo@KingGod.com">
                 </div>
                 <div class="language">
-                  <label for="korean">Language</label>
-                  <button type="button" name="korean" class="setBtn">한국어</button>
+                  <label for="korean" class="languageView"></label>
+                  <button type="button" name="korean" class="setBtn korean">한국어</button>
                   <button type="button" name="English" class="setBtn">English</button>
                   <button type="button" name="Japanese" class="setBtn">日本語</button>
                 </div>
                 <div class="nullform">
                 </div>
                 <div class="secessionBtn">
-                  <button type="button" name="name" value="계정삭제">계정 삭제</button>
+                  <button type="button" name="name" value="계정 삭제"></button>
                 </div>
               </div>
             </div>
@@ -109,12 +109,5 @@
       </div>
     </div>
   </body>
-  <script type="text/javascript">
-     $('.setBtn').click(function(){
-       $('.setBtn').css('background-color', 'white');
-       $('.setBtn').css('color', 'black')
-       $(this).css('background-color', '#66A8CF');
-       $(this).css('color', 'white');
-     })
-  </script>
+
 </html>

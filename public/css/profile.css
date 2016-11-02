@@ -48,6 +48,20 @@
     display: none;
   }
 }
+body, html{
+  margin: 0px;
+  padding: 0px;
+}
+.profilePage .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.profilePage .content{
+  display: flex;
+  flex-direction:row;
+  flex:5;
+}
 .profilePage .article{
   display: inline-block;
   /*display: flex;*/
@@ -63,6 +77,8 @@
 .box{
   float: left;
   margin: 10px;
+  background-size: cover;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);;
   /*background-color: rgb(216, 109, 84);*/
 
 }
@@ -90,7 +106,8 @@
   margin: 10px;
   display: flex;
   align-items: center;
-  background-color:rgb(54, 70, 93)
+  background-color:rgb(54, 70, 93);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);;
 }
 .main_text{
   font-family: 'Exo', sans-serif;
@@ -109,24 +126,35 @@
   height: 80px;
   padding: 50px 0px 0px 57px;
 }
-#pet{
-  background-color: rgb(216, 109, 84);
-  /*background-image: url('/img/puppy.jpg');*/
+#music{
+  background-image: url('/img/hobby/music.jpeg');
   background-size: cover;
-  background-color: rgb(106, 194, 150); !important
 }
-#rest{
-  /*background-image: url('/img/rast.jpg');*/
+#sport{
+  background-image: url('/img/hobby/sport.jpeg');
   background-size: cover;
-  background-color: rgb(241, 162, 79); !important
-}
-#programming{
-  /*background-image: url('/img/programming.jpg');*/
-  background-size: cover;
-
 }
 #game{
-  /*background-image: url('/img/game.jpg');*/
+  background-image: url('/img/hobby/game.jpeg');
   background-size: cover;
-
+}
+#party{
+  background-image: url('/img/hobby/party.jpeg');
+  background-size: cover;
+}
+#study{
+  background-image: url('/img/hobby/study.jpeg');
+  background-size: cover;
+}
+#art{
+  background-image: url('/img/hobby/art.jpeg');
+  background-size: cover;
+}
+#movie{
+  background-image: url('/img/hobby/movie.jpeg');
+  background-size: cover;
+}
+#fashion{
+  background-image: url('/img/hobby/fashion.jpeg');
+  background-size: cover;
 }
