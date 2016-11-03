@@ -66,7 +66,7 @@ $(window).load(function(){
     fnUpdateUserList(data.userList); // 유저리스트 업데이트
     var t = "";
     t += "<div class='chatMessage you'>"
-    t += "  <div class='chatValue'>"+nickname+"님 환영합니다</div>"
+    t += "  <div class='chatValue welcome'>"+nickname+"님 환영합니다</div>"
     t += "</div>"
     $('.chatIndexStatic').append(t)
     $(".chatIndex").scrollTop($(".chatIndex")[0].scrollHeight);
@@ -92,6 +92,7 @@ $(window).load(function(){
 
     $('.usersBox').css('background-color', 'rgb(241, 239, 239)') // 배경색 변경 초기화
     $(this).css('background-color', 'rgb(102, 168, 207)') // 선택한 div 색 강조색으로 변경
+    $(this).css('color', 'white');
     $('.partnerView').text(opponent); // chatHeaderView 에 추가
 
     $(this).find('.usersAlarmBOX').hide(); // 알람값 초기화

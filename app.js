@@ -4,7 +4,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var fs = require('fs');
 var bodyParser = require('body-parser');
-
+var db = [];
 
 app.use('/', express.static('public'));
 app.use(bodyParser.urlencoded({extended : false}));
@@ -42,7 +42,7 @@ app.get('/home',function(req,res){
       res.render('home.html', {
         title: "NO.w.HERE",
         Country: 'korea',
-        Username : "dkdk"
+        Username : db[db.length - 1].id
       });
 });
 app.get('/profile',function(req,res){
@@ -73,7 +73,7 @@ app.get('/messages',function(req,res){
 //       Username : "eunsolKang"
 //   });
 // });
-var db = [];
+
 db = new Array();
 app.post('/messages', function(req, res){
   if(db != ""){

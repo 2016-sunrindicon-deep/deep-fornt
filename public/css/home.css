@@ -28,8 +28,8 @@ html, body{
   padding:10px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);;
 }
-#columns > figure:hover{
-
+#columns figure:hover{
+  background-color: rgb(240, 240, 240);
 }
 #columns figure img{
   width:100%;
@@ -38,14 +38,6 @@ html, body{
   border-top:1px solid rgba(0,0,0,0.2);
   padding:10px;
   margin-top:11px;
-}
-figure:hover{
-  -webkit-transform: scale(0.95);
-  -moz-transform: scale(0.95);
-  -o-transform: scale(0.95);
-  transform: scale(0.95);
-  transition: all 0.5s;
-  -webkit-transition: all 0.5s;
 }
 .hash{
   display: inline-block;
